@@ -1,0 +1,49 @@
+{
+  "dataset": {
+    "id": "geo-qa_goldstandard_v0.1.0"
+  },
+  "questions": [
+    {
+      "id": "1",
+      "answertype": "dbo:Restaurant",
+      "aggregation": "false",
+      "onlydbo": "true",
+      "hybrid": "false",
+      "question": [
+        {
+          "language": "en",
+          "string": "restaurants in Athens",
+          "keywords": "restaurants in Athens"
+        }
+      ],
+      "query": {
+        "sparql": "SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Astronaut> . { ?uri <http://dbpedia.org/ontology/nationality> <http://dbpedia.org/resource/Russia> . } UNION { ?uri <http://dbpedia.org/ontology/nationality> <http://dbpedia.org/resource/Soviet_Union> . } } "
+      },
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "dbo:Restaurant"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "uri": {
+                  "type": "dbo:Restaurant",
+                  "value": "http://dbpedia.org/resource/Nikolai_Budarin"
+                }
+              },
+              {
+                "uri": {
+                  "type": "dbo:Restaurant",
+                  "value": "http://dbpedia.org/resource/Sergei_Zalyotin"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX strdf: <http://strdf.di.uoa.gr/ontology#>
+PREFIX postgis: <http://postgis.net/>
+PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+
+select ?poi
+where { 
+		?poi a <poiURI>; 
+				geo:hasGeometry ?poiGeom. 
+				?poiGeom geo:asWKT ?poiWKT. 
+		?instance owl:sameAs <instanceURI>; 
+				geo:hasGeometry ?instanceGeom. 
+				?instanceGeom geo:asWKT ?instanceWKT. 
+				
+		FILTER(strdf:below(?poiWKT,?instanceWKT) && strdf:left(?poiWKT,?instanceWKT)). 
+}

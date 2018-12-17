@@ -1,0 +1,16 @@
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+
+ select ?instance
+ where { 
+		?instance owl:sameAs <instanceURI>; 
+				geo:hasGeometry ?instanceGeom. 
+				?instanceGeom geo:asWKT ?instanceWKT. 
+		?instance1 owl:sameAs <instance1URI>; 
+				geo:hasGeometry ?instance1Geom. 
+				?instance1Geom geo:asWKT ?instance1WKT.  
+        FILTER(geof:distance(?instanceWKT,?instance1WKT,uom:metre) < 3000).
+}
